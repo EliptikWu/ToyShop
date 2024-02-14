@@ -22,16 +22,18 @@ public class ToyMapper {
                 source.category());
     }
 
-    public static List<Toy> mapFrom(List<ToyDto> source){
-        return source.parallelStream()
-                .map(ToyMapper::mapFrom)
-                .toList();
-    }
 
     public static List<ToyDto> mapFrom(List<Toy> source){
-        return source.parallelStream()
+        return source.stream()
                 .map(ToyMapper::mapFrom)
                 .toList();
 
     }
+    public static List<Toy> mapFromDto(List<ToyDto> source){
+        return source.parallelStream()
+                .map(ToyMapper::mapFrom)
+                .toList();
+    }
+
+
 }

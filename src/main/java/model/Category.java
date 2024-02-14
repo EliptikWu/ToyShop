@@ -1,24 +1,24 @@
 package model;
 
+import java.lang.reflect.Type;
 import java.util.Arrays;
 
 public enum Category {
 
-    Female("Female"),
+    Female(1),
 
-    Male("Male"),
+    Male( 2),
 
-    Unisex("Unisex"),;
+    Unisex(3),;
 
-    private final String name;
 
-    Category(String name) {
-        this.name = name;
-    }
-    public String getName() {
-        return name;
+    private final int value;
+
+    Category(int value) {
+        this.value = value;
     }
 
-    public static Category fromName(String name) {
-        return Arrays.stream(Category.values()).filter(c -> c.equals(name)).findFirst().orElseThrow();}
+    public static Category fromName(int value){
+        return Arrays.stream(Category.values()).filter(e->e.value==value).findFirst().orElseThrow();
+    }
 }

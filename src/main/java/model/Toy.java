@@ -1,12 +1,13 @@
 package model;
 
+import java.util.List;
+
 public class Toy {
 
     private Long id;
     private String name;
     private Double price;
     private Integer amount;
-
     private Category category;
 
     public Long getId() {
