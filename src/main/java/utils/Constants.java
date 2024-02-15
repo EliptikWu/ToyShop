@@ -1,5 +1,5 @@
 package utils;
 
 public class Constants {
-    public static final String PATH_CONTACTS = "toys.txt";
+    public static final String PATH_TOYS = "toys.txt";
 }

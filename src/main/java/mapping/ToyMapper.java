@@ -4,6 +4,7 @@ import dtos.ToyDto;
 import model.Toy;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ToyMapper {
     public static ToyDto mapFrom(Toy source){
@@ -24,15 +25,11 @@ public class ToyMapper {
 
 
     public static List<ToyDto> mapFrom(List<Toy> source){
-        return source.stream()
-                .map(ToyMapper::mapFrom)
-                .toList();
+        return source.stream().map(ToyMapper::mapFrom).collect(Collectors.toList());
 
     }
     public static List<Toy> mapFromDto(List<ToyDto> source){
-        return source.parallelStream()
-                .map(ToyMapper::mapFrom)
-                .toList();
+        return source.stream().map(ToyMapper::mapFrom).collect(Collectors.toList());
     }
 
 

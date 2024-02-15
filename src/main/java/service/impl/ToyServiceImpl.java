@@ -7,12 +7,18 @@ import model.Toy;
 import repository.ToyRepository;
 import repository.repositoryImpl.ToyRepositoryImpl;
 import service.ToyService;
+import utils.Constants;
+import utils.FileUtils;
 
+import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.Collections.sort;
+
 public class ToyServiceImpl implements ToyService {
-    private List<ToyDto> toys;
+    static List<ToyDto> toys;
+
     public ToyServiceImpl() {
         ToyRepository repoCustomer = new ToyRepositoryImpl();
         toys = repoCustomer.getAllToys();
@@ -24,32 +30,53 @@ public class ToyServiceImpl implements ToyService {
         toys.add(newToy);
         return toys;
     }
+
     @Override
-    public List<Toy> listToyByCategory(int category) {
+    public List<ToyDto> listToyByCategory(Category category) {
         return toys.stream()
-                .filter(e->e.equals(Category.fromName(category)))
-                .map(e-> ToyMapper.mapFrom(e))
-                .toList();
+                .filter(e -> e.category() == category)
+                .collect(Collectors.toList());
     }
     @Override
-    public Map.Entry<Category,Integer> maxToy() throws Exception {
-        return sort().entrySet().stream().reduce((first,second)-> second).orElse(null);
-    }
-    @Override
-    public Map.Entry<Category,Integer> minToy() throws Exception {
-        return sort().entrySet().stream().findFirst().orElse(null);
+    public Map.Entry<Category, Long> maxToy() throws Exception {
+        return  toys.stream().collect(Collectors.groupingBy(ToyDto::category, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(Comparator.comparingLong(Map.Entry::getValue))
+                .orElse(null);
     }
 
+
+    @Override
+    public Category minToy() {
+        return toys.stream()
+                .collect(Collectors.groupingBy(ToyDto::category, Collectors.summingInt(ToyDto::amount)))
+                .entrySet()
+                .stream()
+                .min(Comparator.comparingInt(Map.Entry::getValue))
+                .map(Map.Entry::getKey)
+                .orElse(null);
+    }
+
+    @Override
+    public Map<Category, Integer> showByType() throws Exception {
+        Map<Category,Integer> showByType = new TreeMap<>();
+        for(ToyDto toy : toys){
+            Category type = toy.category();
+            showByType.put(type,showByType.getOrDefault(type,0)+1);
+        }
+        return showByType;
+    }
     @Override
     public List<ToyDto> listAllToy() {
         return toys;
     }
 
     @Override
-    public List<ToyDto> allPriceToy(){
+    public List<Double> allPriceToy(){
         return toys.stream()
-                .mapToDouble(ToyMapper::getPrice)
-                .sum().toList();
+                .map(ToyDto::price)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -64,48 +91,43 @@ public class ToyServiceImpl implements ToyService {
     }
 
     @Override
-    public ToyDto toySearch(String name) {
-        if(verifyExist(name)){
-            List<ToyDto> list = toys.stream().filter(toyList-> Objects.equals(toy.getName(), name))
-                    .findFirst().stream().map(ToyMapper::mapFrom).toList();
-            return list.getFirst();
-        }
-    }
-    @Override
     public Boolean verifyExist(String name) {
-        return toys.stream().anyMatch(e -> e.getName().equalsIgnoreCase(name));
-    }
-    @Override
-    public List<Toy> toyDecrease(Toy toy, int amount) {
-        toys.stream().filter(toy1 -> Objects.equals(toy.getName(),toy.getName()))
-                .peek(Toy -> {
-                    if(toy.getAmount()>0){
-                        toy.setAmount(toy.getAmount() - amount);
-                    } else if (toy.getAmount()==0) {
-                        toys.remove(toy);
-                    }
-                })
-                .findFirst();
-        return toys.stream().map(ToyMapper::mapFrom).toList();
+        return toys.stream().anyMatch(e -> e.name().equalsIgnoreCase(name));
     }
 
     @Override
-    public List<Toy> increase(Toy toy, int amount) {
-        toys.stream().filter(toy1 -> Objects.equals(toy.getName(),toy.getName()))
-                .peek(Toy -> toy.setAmount(toy.getAmount()+amount))
-                .findFirst();
-        return toys.stream().map(ToyMapper::mapFrom).toList();
+    public ToyDto toySearch(String name) throws Exception {
+        List<Toy> list = toys.stream().filter(toyList-> Objects.equals(toyList.name(), name))
+                .findFirst().stream().map(ToyMapper::mapFrom).toList();
+        return null;
     }
+    private ToyDto findToyByName(String toyName) throws Exception {
+        return toys.stream()
+                .filter(toy -> toy.name().equalsIgnoreCase(toyName))
+                .findFirst()
+                .orElseThrow(() -> new Exception("Toy not found: " + toyName));
+    }
+    @Override
+    public List<ToyDto> toyIncrease(String toyName, int amount) throws Exception {
+        ToyDto toyToUpdate = findToyByName(toyName);
+        toyToUpdate.amount();
+        FileUtils.saveToys(new File(Constants.PATH_TOYS), toys);
 
+        return null;
+    }
+    @Override
+    public List<ToyDto> toyDecrease(String toyName, int amount) throws Exception {
+        ToyDto toyToUpdate = findToyByName(toyName);
+        if (toyToUpdate.amount() < amount)
+            throw new Exception("Insufficient quantity");
+        toyToUpdate.amount();
+        FileUtils.saveToys(new File(Constants.PATH_TOYS), toys);
+        return null;
+    }
     @Override
     public List<ToyDto> toyOrdered(){
         return toys.stream()
-                .sorted(Comparator.comparingInt(ToyMapper::getAmount))
+                .sorted(Comparator.comparingInt(ToyDto::amount))
                 .collect(Collectors.toList());
     }
-
-
-
-
-
 }

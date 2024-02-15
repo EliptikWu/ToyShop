@@ -9,12 +9,12 @@ import java.util.List;
 
 public  class FileUtils {
 
-    public static void saveContacts(File file, List<ToyDto> lista) {
+    public static void saveToys(File file, List<ToyDto> list) {
 
         try {
             FileOutputStream ficheroSalida = new FileOutputStream(file);
             ObjectOutputStream objetoSalida = new ObjectOutputStream(ficheroSalida);
-            objetoSalida.writeObject(lista);
+            objetoSalida.writeObject(list);
             objetoSalida.close();
         } catch (FileNotFoundException e) {
             System.out.println("El archivo no existe");
@@ -23,13 +23,13 @@ public  class FileUtils {
         }
     }
 
-    public static List<Toy> getContacts(File file) {
+    public static List<Toy> getToys(File file) {
 
-        List<Toy> lista = new ArrayList<>();
+        List<Toy> toys = new ArrayList<>();
         try {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            lista = (List<Toy>) ois.readObject();
+            toys = (List<Toy>) ois.readObject();
             ois.close();
         } catch (FileNotFoundException e) {
             System.out.println("Archivo no existe");
@@ -38,7 +38,7 @@ public  class FileUtils {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        return lista;
+        return toys;
     }
 
 

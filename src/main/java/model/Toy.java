@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Toy {
+public class Toy implements Serializable {
 
     private Long id;
     private String name;

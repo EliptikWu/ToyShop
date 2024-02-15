@@ -1,6 +1,7 @@
 package view;
 
 import dtos.ToyDto;
+import model.Category;
 import service.ToyService;
 import service.impl.ToyServiceImpl;
 
@@ -10,9 +11,9 @@ import java.util.Scanner;
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-        String option = "0";
+        String option = "1";
         ToyService toyService = new ToyServiceImpl();
 
         do {
@@ -54,8 +55,8 @@ public class Main {
                     String name = scan.next();
                     System.out.println("Enter the amount");
                     int amount = Integer.parseInt(scan.next());
-                    ToyDto toyDto = toyService.search(name);
-                    System.out.println(toyService.toyDecrease(Toy,amount));
+                    ToyDto toyDto = toyService.toySearch(name);
+                    System.out.println(toyService.toyDecrease(String.valueOf(toyDto),amount));
                     break;
                 }
                 case "6": {
@@ -63,16 +64,17 @@ public class Main {
                     String name = scan.next();
                     System.out.println("Enter the amount");
                     int amount = Integer.parseInt(scan.next());
-                    ToyDto toyDto = toyService.search(name);
-                    System.out.println(toyService.toyIncrease(Toy,amount));
+                    ToyDto toyDto = toyService.toySearch(name);
+                    System.out.println(toyService.toyIncrease(String.valueOf(toyDto),amount));
                     break;
                 }
                 case "7": {
-                    System.out.println(toyService.verifyExist());
+                    System.out.println(toyService.maxToy());
                     break;
                 }
                 case "8": {
-                    System.out.println(toyService.toySearch());
+                    System.out.println(toyService.minToy());
+                    break;
                 }
                 case "9": {
                     System.out.println(toyService.expensiveToy());
