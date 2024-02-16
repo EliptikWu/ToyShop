@@ -39,7 +39,7 @@ public class Main {
                     break;
                 }
                 case "2": {
-                    System.out.println(toyService.listToyByCategory());
+                    System.out.println(toyService.listToyByCategory(Category.Male));
                     break;
                 }
                 case "3": {
