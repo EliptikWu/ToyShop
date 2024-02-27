@@ -24,15 +24,14 @@ public class ToyServiceImpl implements ToyService {
         toys = repoCustomer.getAllToys();
     }
 
-    @Override
-    public List<ToyDto> addToy(ToyDto toyMapper) throws Exception {
-        if(!verifyExist(toyMapper.name())){
-            toys.add(ToyMapper.mapFromDto(toyMapper));
-            FileUtils.saveToys(new File(Constants.PATH_TOYS), toys);
-            return toys.stream().map(ToyMapper::mapFrom).toList();
-        }
-        throw new Exception("This toy is in the list");
-    }
+    /*@Override
+    public void addToy(ToyDto toy) throws Exception {
+        Toy newToy = ToyMapper.mapFrom(toy);
+        toys.add(ToyDto);
+        FileUtils.saveToys(new File(Constants.PATH_TOYS), toys);
+        getAllToys();
+
+    }*/
     @Override
     public List<ToyDto> listToyByCategory(Category category) throws Exception {
         return toys.stream()

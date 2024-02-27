@@ -42,7 +42,7 @@ public class Main {
 
             switch (option) {
                 case "1": {
-                    System.out.println(toyService.addToy());
+                    //System.out.println(toyService.addToy());
                     break;
                 }
                 case "2": {

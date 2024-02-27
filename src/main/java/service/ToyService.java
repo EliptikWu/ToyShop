@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface ToyService {
-    List<ToyDto> addToy(ToyDto toyDto) throws Exception;
+    //void addToy(ToyDto toyDto) throws Exception;
 
     List<ToyDto> listToyByCategory(Category category) throws Exception;
 
