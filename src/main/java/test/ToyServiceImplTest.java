@@ -28,7 +28,7 @@ public class ToyServiceImplTest {
         Category category = Category.Unisex;
         ToyDto toyToAdd = new ToyDto(id,name,price,amount,category);
         List<ToyDto> expected = Collections.singletonList(toyToAdd);
-        List<ToyDto> result = service.addToy(toyToAdd);
+        List<ToyDto> result = service.addToy();
         assertEquals(expected,result);
     }
     @Test

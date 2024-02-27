@@ -2,10 +2,15 @@ package view;
 
 import dtos.ToyDto;
 import model.Category;
+import model.Toy;
+import repository.ToyRepository;
+import repository.repositoryImpl.ToyRepositoryImpl;
 import service.ToyService;
+import service.impl.ThreadServiceImpl;
 import service.impl.ToyServiceImpl;
 
 import java.util.Scanner;
+import java.util.concurrent.CompletableFuture;
 
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -15,6 +20,8 @@ public class Main {
 
         String option = "1";
         ToyService toyService = new ToyServiceImpl();
+        ToyRepositoryImpl toyRepository = new ToyRepositoryImpl();
+        ThreadServiceImpl threadService = new ThreadServiceImpl();
 
         do {
             Scanner scan = new Scanner(System.in);
@@ -43,10 +50,25 @@ public class Main {
                     break;
                 }
                 case "3": {
+                    CompletableFuture.runAsync(() ->{
+                        threadService.waiting();
+                            });
+                    threadService.slowTime(3000);
                     System.out.println(toyService.listAllToy());
                     break;
                 }
                 case "4": {
+                    CompletableFuture thread = CompletableFuture.supplyAsync(()->{
+                        throw new RuntimeException("The data may have been modified");
+                    });
+                    CompletableFuture thread2 = thread.exceptionally(error -> {
+                        System.out.println("Exception: " + error.toString());
+                        return 777;
+                    });
+                    thread2.thenAccept(result -> {
+                        System.out.println("Error: " + result + " (Data is recovering...)");
+                    });
+                    threadService.slowTime(3000);
                     System.out.println(toyService.allPriceToy());
                     break;
                 }
@@ -85,7 +107,7 @@ public class Main {
                     break;
                 }
                 default:
-                    System.out.println("");
+                    System.out.println("DOES NOT EXIST");
 
             }
 

@@ -2,29 +2,30 @@ package service;
 
 import dtos.ToyDto;
 import model.Category;
+import model.Toy;
 
 import java.util.List;
 import java.util.Map;
 
 public interface ToyService {
-    List<ToyDto> addToy(Long id, String name, double price, Integer amount, Category category);
+    List<ToyDto> addToy(ToyDto toyDto) throws Exception;
 
-    List<ToyDto> listToyByCategory(Category category);
+    List<ToyDto> listToyByCategory(Category category) throws Exception;
 
     Map<Category, Integer> showByType() throws Exception;
 
-    List<ToyDto> listAllToy();
+    List<ToyDto> listAllToy() throws Exception;
 
     Map.Entry<Category, Long> maxToy() throws Exception;
     Category minToy() throws Exception;
 
-    Object allPriceToy();
+    Object allPriceToy() throws Exception;
 
-    List<ToyDto> expensiveToy();
+    List<ToyDto> expensiveToy() throws Exception;
 
-    List<ToyDto> toyOrdered();
+    List<ToyDto> toyOrdered() throws Exception;
 
-    Boolean verifyExist(String name);
+    Boolean verifyExist(String name) throws Exception;
 
     ToyDto toySearch(String name) throws Exception;
 

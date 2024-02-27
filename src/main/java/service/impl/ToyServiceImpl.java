@@ -25,18 +25,21 @@ public class ToyServiceImpl implements ToyService {
     }
 
     @Override
-    public List<ToyDto> addToy(Long id, String name, double price, Integer amount, Category category) {
-        ToyDto newToy = new ToyDto(id, name, price, amount, category);
-        toys.add(newToy);
-        return toys;
+    public List<ToyDto> addToy(ToyDto toyMapper) throws Exception {
+        if(!verifyExist(toyMapper.name())){
+            toys.add(ToyMapper.mapFromDto(toyMapper));
+            FileUtils.saveToys(new File(Constants.PATH_TOYS), toys);
+            return toys.stream().map(ToyMapper::mapFrom).toList();
+        }
+        throw new Exception("This toy is in the list");
     }
-
     @Override
-    public List<ToyDto> listToyByCategory(Category category) {
+    public List<ToyDto> listToyByCategory(Category category) throws Exception {
         return toys.stream()
                 .filter(e -> e.category() == category)
                 .collect(Collectors.toList());
     }
+
     @Override
     public Map.Entry<Category, Long> maxToy() throws Exception {
         return  toys.stream().collect(Collectors.groupingBy(ToyDto::category, Collectors.counting()))
@@ -46,9 +49,8 @@ public class ToyServiceImpl implements ToyService {
                 .orElse(null);
     }
 
-
     @Override
-    public Category minToy() {
+    public Category minToy() throws Exception {
         return toys.stream()
                 .collect(Collectors.groupingBy(ToyDto::category, Collectors.summingInt(ToyDto::amount)))
                 .entrySet()
@@ -73,14 +75,14 @@ public class ToyServiceImpl implements ToyService {
     }
 
     @Override
-    public List<Double> allPriceToy(){
+    public List<Double> allPriceToy() throws Exception{
         return toys.stream()
                 .map(ToyDto::price)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<ToyDto> expensiveToy() {
+    public List<ToyDto> expensiveToy() throws Exception {
         Map<String, ToyDto> expensiveProduct = new HashMap<>();
         for (ToyDto toy : toys) {
             expensiveProduct
@@ -112,7 +114,6 @@ public class ToyServiceImpl implements ToyService {
         ToyDto toyToUpdate = findToyByName(toyName);
         toyToUpdate.amount();
         FileUtils.saveToys(new File(Constants.PATH_TOYS), toys);
-
         return null;
     }
     @Override
@@ -125,7 +126,7 @@ public class ToyServiceImpl implements ToyService {
         return null;
     }
     @Override
-    public List<ToyDto> toyOrdered(){
+    public List<ToyDto> toyOrdered() throws Exception {
         return toys.stream()
                 .sorted(Comparator.comparingInt(ToyDto::amount))
                 .collect(Collectors.toList());
