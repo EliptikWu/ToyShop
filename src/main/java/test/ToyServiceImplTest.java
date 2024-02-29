@@ -15,12 +15,12 @@ public class ToyServiceImplTest {
     private ToyServiceImpl service;
 
     @Before
-    void setup(){
+    public void setup(){
         service = new ToyServiceImpl();
     }
 
     @Test
-    void addToy_test() throws Exception {
+    public void addToy_test() throws Exception {
         Long id = Long.valueOf(1);
         String name = "Terreneitor";
         Double price = Double.valueOf(30.00);
@@ -32,43 +32,55 @@ public class ToyServiceImplTest {
         //assertEquals(expected,result);
     }
     @Test
-    void listToyByCategory_test() throws Exception {
+    public void listToyByCategory_test() throws Exception {
         Map<Category,Integer> mapExpected = new TreeMap<>();
-        mapExpected.put(Category.Unisex,2);
+        mapExpected.put(Category.Unisex,3);
+        mapExpected.put(Category.Female,2);
+        mapExpected.put(Category.Male,2);
         Map<Category,Integer> result = service.showByType();
         assertEquals(mapExpected,result);
     }
+
     @Test
-    void listAllToy_test() throws Exception {
-    }
-    @Test
-    void maxToy_test() throws Exception {
+    public void maxToy_test() throws Exception {
         Map<Category, Integer> testMap = Map.of(Category.Unisex,20,Category.Male,15,Category.Female,30);
-        Map.Entry<Category,Integer> expected = testMap.entrySet().stream().max(Map.Entry.comparingByValue()).orElse(null);
+        Map.Entry<Category,Integer> expected = testMap.entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .orElse(null);
         Map.Entry<Category, Long> result = service.maxToy();
-        assertEquals(expected,result);
+        Map.Entry<Category, Long> expectedLong = new AbstractMap.SimpleEntry<>(expected.getKey(),
+                expected.getValue().longValue());
+        assertEquals(expectedLong, result);
     }
     @Test
-    void minToy_test() throws Exception {
+    public void minToy_test() throws Exception {
         Map<Category, Integer> testMap = Map.of(Category.Unisex,30,Category.Male,10,Category.Female,50);
-        Map.Entry<Category,Integer> expected = testMap.entrySet().stream().min(Map.Entry.comparingByValue()).orElse(null);
+        Map.Entry<Category,Integer> expected = testMap.entrySet()
+                .stream()
+                .min(Map.Entry.comparingByValue())
+                .orElse(null);
         Category result = service.minToy();
-        assertEquals(expected,result);
+        Map.Entry<Category, Long> expectedLong = new AbstractMap.SimpleEntry<>(expected.getKey(),
+                expected.getValue().longValue());
+        assertEquals(expectedLong, result);
     }
     /*@Test
-    void allPriceToy_test() throws Exception{
+    public void allPriceToy_test() throws Exception{
         service.addToy(new ToyDto(1L,"Blin",300.0,11, Category.Unisex));
         service.addToy(new ToyDto(5L,"Sword",22.0,1,Category.Unisex));
         int expectedTotal = 1200+2000;
         List<Double> result = service.allPriceToy();
         assertEquals(expectedTotal,result);
     }*/
-
     @Test
-    void expensiveToy_test() throws Exception{
+    public void listAllToy_test() throws Exception {
     }
     @Test
-    void toyOrdered_test() throws Exception{
+    public void expensiveToy_test() throws Exception{
+    }
+    @Test
+    public void toyOrdered_test() throws Exception{
         Map<Category,Integer> unsortedMap = new HashMap<>();
         unsortedMap.put(Category.Unisex,1);
         unsortedMap.put(Category.Female,3);
@@ -81,10 +93,10 @@ public class ToyServiceImplTest {
         assertEquals(expectedMap,result);
     }
     @Test
-    void toySearch_test() throws Exception{
+    public void toySearch_test() throws Exception{
     }
     @Test
-    void toyDecrease_test() throws Exception{
+    public void toyDecrease_test() throws Exception{
         Long id = Long.valueOf(1);
         String name = "Terreneitor";
         Category category = Category.Unisex;
@@ -97,7 +109,7 @@ public class ToyServiceImplTest {
         assertEquals(listExpected,result);
     }
     @Test
-    void toyIncrease_test() throws Exception{
+    public void toyIncrease_test() throws Exception{
         Long id = Long.valueOf(1);
         String name = "Terreneitor";
         Category category = Category.Unisex;

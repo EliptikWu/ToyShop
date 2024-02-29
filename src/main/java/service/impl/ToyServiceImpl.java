@@ -14,8 +14,6 @@ import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.Collections.sort;
-
 public class ToyServiceImpl implements ToyService {
     static List<ToyDto> toys;
 

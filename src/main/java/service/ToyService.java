@@ -2,7 +2,6 @@ package service;
 
 import dtos.ToyDto;
 import model.Category;
-import model.Toy;
 
 import java.util.List;
 import java.util.Map;

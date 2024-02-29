@@ -2,8 +2,6 @@ package view;
 
 import dtos.ToyDto;
 import model.Category;
-import model.Toy;
-import repository.ToyRepository;
 import repository.repositoryImpl.ToyRepositoryImpl;
 import service.ToyService;
 import service.impl.ThreadServiceImpl;
@@ -12,9 +10,6 @@ import service.impl.ToyServiceImpl;
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 
-
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) throws Exception {
 

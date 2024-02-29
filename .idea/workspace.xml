@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="35ab8685-1d8a-4c91-8938-9706f4a5d925" name="Changes" comment="1.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/ToyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/ToyService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/impl/ToyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/impl/ToyServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/test/ToyServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/ToyServiceImplTest.java" afterDir="false" />
@@ -60,6 +61,94 @@
       <recent name="utils" />
     </key>
   </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="view.Main" />
+      <module name="co.edu.cue.toyshop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ToyServiceImplTest.listToyByCategory_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="co.edu.cue.toyshop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.ToyServiceImplTest" />
+      <option name="METHOD_NAME" value="listToyByCategory_test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ToyServiceImplTest.maxToy_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="co.edu.cue.toyshop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.ToyServiceImplTest" />
+      <option name="METHOD_NAME" value="maxToy_test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ToyServiceImplTest.minToy_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="co.edu.cue.toyshop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.ToyServiceImplTest" />
+      <option name="METHOD_NAME" value="minToy_test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ToyServiceImplTest.toyIncrease_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="co.edu.cue.toyshop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.ToyServiceImplTest" />
+      <option name="METHOD_NAME" value="toyIncrease_test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ToyServiceImplTest.listToyByCategory_test" />
+        <item itemvalue="JUnit.ToyServiceImplTest.toyIncrease_test" />
+        <item itemvalue="JUnit.ToyServiceImplTest.minToy_test" />
+        <item itemvalue="JUnit.ToyServiceImplTest.maxToy_test" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -80,6 +169,9 @@
       <workItem from="1709036300933" duration="2251000" />
       <workItem from="1709066212473" duration="117000" />
       <workItem from="1709067881091" duration="687000" />
+      <workItem from="1709123163209" duration="10000" />
+      <workItem from="1709123256905" duration="5000" />
+      <workItem from="1709175917803" duration="3985000" />
     </task>
     <task id="LOCAL-00001" summary="1.0">
       <option name="closed" value="true" />
