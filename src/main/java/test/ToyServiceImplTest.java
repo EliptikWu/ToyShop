@@ -25,7 +25,7 @@ public class ToyServiceImplTest {
         String name = "Terreneitor";
         Double price = Double.valueOf(30.00);
         Integer amount = 4;
-        Category category = Category.Unisex;
+        String category = String.valueOf(Category.Unisex);
         ToyDto toyToAdd = new ToyDto(id,name,price,amount,category);
         List<ToyDto> expected = Collections.singletonList(toyToAdd);
         //List<ToyDto> result = service.addToy();
@@ -48,7 +48,7 @@ public class ToyServiceImplTest {
                 .stream()
                 .max(Map.Entry.comparingByValue())
                 .orElse(null);
-        Map.Entry<Category, Long> result = service.maxToy();
+        Map.Entry<String, Long> result = service.maxToy();
         Map.Entry<Category, Long> expectedLong = new AbstractMap.SimpleEntry<>(expected.getKey(),
                 expected.getValue().longValue());
         assertEquals(expectedLong, result);
@@ -60,7 +60,7 @@ public class ToyServiceImplTest {
                 .stream()
                 .min(Map.Entry.comparingByValue())
                 .orElse(null);
-        Category result = service.minToy();
+        String result = service.minToy();
         Map.Entry<Category, Long> expectedLong = new AbstractMap.SimpleEntry<>(expected.getKey(),
                 expected.getValue().longValue());
         assertEquals(expectedLong, result);
@@ -99,7 +99,7 @@ public class ToyServiceImplTest {
     public void toyDecrease_test() throws Exception{
         Long id = Long.valueOf(1);
         String name = "Terreneitor";
-        Category category = Category.Unisex;
+        String category = String.valueOf(Category.Unisex);
         Double price = Double.valueOf(200.00);
         Integer amount = 1;
         int newAmount = 4;
@@ -112,7 +112,7 @@ public class ToyServiceImplTest {
     public void toyIncrease_test() throws Exception{
         Long id = Long.valueOf(1);
         String name = "Terreneitor";
-        Category category = Category.Unisex;
+        String category = String.valueOf(Category.Unisex);
         Double price = Double.valueOf(200.00);
         Integer amount = 1;
         int newAmount = 4;

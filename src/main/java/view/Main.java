@@ -2,7 +2,7 @@ package view;
 
 import dtos.ToyDto;
 import model.Category;
-import repository.repositoryImpl.ToyRepositoryImpl;
+import repository.ToyRepositoryImpl.ToyRepositoryImpl;
 import service.ToyService;
 import service.impl.ThreadServiceImpl;
 import service.impl.ToyServiceImpl;

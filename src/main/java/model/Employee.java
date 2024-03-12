@@ -3,6 +3,7 @@ package model;
 import lombok.*;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -10,12 +11,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @ToString
 @Builder
-public class Toy implements Serializable {
-
-    private Long id;
+public class Employee implements Serializable {
+    private Long idEmployee;
     private String name;
-    private Double price;
-    private Integer amount;
-    private String category;
-
+    private String email;
+    private int telephone;
 }

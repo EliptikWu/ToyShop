@@ -5,7 +5,7 @@ import mapping.ToyMapper;
 import model.Category;
 import model.Toy;
 import repository.ToyRepository;
-import repository.repositoryImpl.ToyRepositoryImpl;
+import repository.ToyRepositoryImpl.ToyRepositoryImpl;
 import service.ToyService;
 import utils.Constants;
 import utils.FileUtils;
@@ -33,12 +33,12 @@ public class ToyServiceImpl implements ToyService {
     @Override
     public List<ToyDto> listToyByCategory(Category category) throws Exception {
         return toys.stream()
-                .filter(e -> e.category() == category)
+                .filter(e -> e.category().equals(category))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Map.Entry<Category, Long> maxToy() throws Exception {
+    public Map.Entry<String, Long> maxToy() throws Exception {
         return  toys.stream().collect(Collectors.groupingBy(ToyDto::category, Collectors.counting()))
                 .entrySet()
                 .stream()
@@ -47,7 +47,7 @@ public class ToyServiceImpl implements ToyService {
     }
 
     @Override
-    public Category minToy() throws Exception {
+    public String minToy() throws Exception {
         return toys.stream()
                 .collect(Collectors.groupingBy(ToyDto::category, Collectors.summingInt(ToyDto::amount)))
                 .entrySet()
@@ -61,8 +61,8 @@ public class ToyServiceImpl implements ToyService {
     public Map<Category, Integer> showByType() throws Exception {
         Map<Category,Integer> showByType = new TreeMap<>();
         for(ToyDto toy : toys){
-            Category type = toy.category();
-            showByType.put(type,showByType.getOrDefault(type,0)+1);
+            String type = toy.category();
+            showByType.put(Category.valueOf(type),showByType.getOrDefault(type,0)+1);
         }
         return showByType;
     }

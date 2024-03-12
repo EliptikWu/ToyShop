@@ -4,9 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35ab8685-1d8a-4c91-8938-9706f4a5d925" name="Changes" comment="1.0">
+    <list default="true" id="35ab8685-1d8a-4c91-8938-9706f4a5d925" name="Changes" comment="&quot;1.0 v2&quot;">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Config/DataBaseConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dtos/ClientDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dtos/EmployeeDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dtos/SaleDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mapping/ClientMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mapping/EmployeeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mapping/SaleMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Sale.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/repository/Repository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/repository/ToyRepositoryImpl/ToyRepositoryDBImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/repository/ToyRepositoryImpl/ToyRepositoryFilesImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtos/ToyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtos/ToyDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Toy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Toy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/repositoryImpl/ToyRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/ToyRepositoryImpl/ToyRepositoryImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/ToyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/ToyService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/impl/ToyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/impl/ToyServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/test/ToyServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/ToyServiceImplTest.java" afterDir="false" />
@@ -172,6 +189,8 @@
       <workItem from="1709123163209" duration="10000" />
       <workItem from="1709123256905" duration="5000" />
       <workItem from="1709175917803" duration="3985000" />
+      <workItem from="1710201517798" duration="615000" />
+      <workItem from="1710202312113" duration="3012000" />
     </task>
     <task id="LOCAL-00001" summary="1.0">
       <option name="closed" value="true" />
@@ -187,8 +206,20 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.0" />
+    <MESSAGE value="&quot;1.0 v2&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;1.0 v2&quot;" />
   </component>
 </project>

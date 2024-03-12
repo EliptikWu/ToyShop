@@ -15,8 +15,8 @@ public interface ToyService {
 
     List<ToyDto> listAllToy() throws Exception;
 
-    Map.Entry<Category, Long> maxToy() throws Exception;
-    Category minToy() throws Exception;
+    Map.Entry<String, Long> maxToy() throws Exception;
+    String minToy() throws Exception;
 
     Object allPriceToy() throws Exception;
 

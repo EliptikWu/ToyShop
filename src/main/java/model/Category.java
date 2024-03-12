@@ -8,7 +8,7 @@ public enum Category {
 
     Male( 2),
 
-    Unisex(3),;
+    Unisex(3);
 
 
     private final int value;
