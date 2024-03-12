@@ -3,7 +3,6 @@ package model;
 import lombok.*;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 @Getter
 @Setter

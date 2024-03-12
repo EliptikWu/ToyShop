@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-03-2024 a las 02:58:10
+-- Tiempo de generación: 12-03-2024 a las 04:58:23
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -60,7 +60,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`idEmployee`, `email`, `name`, `telephone`) VALUES
-(10934854, 'luis34@hotmail.com', 'Luis Giraldo', '342456785234');
+(1, 'luis34@hotmail.com', 'Luis Giraldo', '342456785234');
 
 -- --------------------------------------------------------
 
@@ -93,14 +93,14 @@ CREATE TABLE `toy` (
   `name` varchar(255) DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL,
   `amount` int(11) DEFAULT NULL,
-  `toyCategory` int(255) NOT NULL
+  `category` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `toy`
 --
 
-INSERT INTO `toy` (`id`, `name`, `price`, `amount`, `toyCategory`) VALUES
+INSERT INTO `toy` (`id`, `name`, `price`, `amount`, `category`) VALUES
 (1, 'Barbie ', 10.99, 100, 1);
 
 --
@@ -120,6 +120,15 @@ ALTER TABLE `employee`
   ADD PRIMARY KEY (`idEmployee`);
 
 --
+-- Indices de la tabla `sale`
+--
+ALTER TABLE `sale`
+  ADD KEY `FkSale` (`idSale`),
+  ADD KEY `FkClient` (`idClient`),
+  ADD KEY `FkToy` (`idToy`) USING BTREE,
+  ADD KEY `FkEmployee` (`idEmployee`);
+
+--
 -- Indices de la tabla `toy`
 --
 ALTER TABLE `toy`
@@ -136,10 +145,28 @@ ALTER TABLE `client`
   MODIFY `idClient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `employee`
+--
+ALTER TABLE `employee`
+  MODIFY `idEmployee` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `toy`
 --
 ALTER TABLE `toy`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `sale`
+--
+ALTER TABLE `sale`
+  ADD CONSTRAINT `sale_ibfk_1` FOREIGN KEY (`idToy`) REFERENCES `toy` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sale_ibfk_2` FOREIGN KEY (`idClient`) REFERENCES `client` (`idClient`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sale_ibfk_3` FOREIGN KEY (`idEmployee`) REFERENCES `employee` (`idEmployee`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

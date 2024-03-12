@@ -1,9 +1,7 @@
 package mapping;
 
 import dtos.SaleDto;
-import dtos.ToyDto;
 import model.Sale;
-import model.Toy;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +22,6 @@ public class SaleMapper {
                 saleMapper.idEmployee());
 
     }
-
 
     public static List<SaleDto> mapFrom(List<Sale> saleMapper){
         return saleMapper.stream().map(SaleMapper::mapFrom).collect(Collectors.toList());

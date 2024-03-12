@@ -1,9 +1,7 @@
 package mapping;
 
 import dtos.ClientDto;
-import dtos.ToyDto;
 import model.Client;
-import model.Toy;
 
 import java.util.List;
 import java.util.stream.Collectors;

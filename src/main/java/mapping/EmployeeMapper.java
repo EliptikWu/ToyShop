@@ -1,9 +1,7 @@
 package mapping;
 
 import dtos.EmployeeDto;
-import dtos.ToyDto;
 import model.Employee;
-import model.Toy;
 
 import java.util.List;
 import java.util.stream.Collectors;

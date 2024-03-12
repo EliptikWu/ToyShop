@@ -1,85 +1,76 @@
-package repository.ClientRepositoryImpl;
+package repository.SaleRepositoryImpl;
 
 import Config.DataBaseConnection;
-import model.Client;
+import model.Sale;
 import repository.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientRepositoryDBImpl implements Repository<Client> {
+public class SaleRepositoryDBImpl implements Repository<Sale> {
     private Connection getConnection() throws SQLException {
         return DataBaseConnection.getInstance();
     }
 
-    private Client createClient(ResultSet resultSet) throws SQLException {
-        Client client = new Client();
-        client.setIdClient(resultSet.getLong("idClient"));
-        client.setName(resultSet.getString("name"));
-        client.setEmail(resultSet.getString("price"));
-        client.setTelephone(resultSet.getInt("category"));
-        java.sql.Date dbSqlDate = resultSet.getDate("birthDate");
-        if (dbSqlDate != null) {
-            Date birthDate = dbSqlDate;
-            client.setBirthDate(birthDate); //
-        } else {
-            client.setBirthDate(null);
-        }
-        return client;
+    private Sale createSale(ResultSet resultSet) throws SQLException {
+        Sale sale = new Sale();
+        sale.setIdSale(resultSet.getLong("idSale"));
+        sale.setIdToy(resultSet.getLong("idToy"));
+        sale.setIdEmployee(resultSet.getLong("idEmployee"));
+        return sale;
     }
 
     @Override
-    public List<Client> list() {
-        List<Client>toysList=new ArrayList<>();
+    public List<Sale> list() {
+        List<Sale>salesList=new ArrayList<>();
         try(Statement statement=getConnection().createStatement();
             ResultSet resultSet=statement.executeQuery(
                     """
-                        SELECT * FROM client
+                        SELECT * FROM sale
                         """
             ))
         {
             while (resultSet.next()){
-                Client client=createClient(resultSet);
-                toysList.add(client);
+                Sale sale=createSale(resultSet);
+                salesList.add(sale);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return toysList;
+        return salesList;
     }
 
     @Override
-    public Client byId(Long id) {
-        Client client = null;
+    public Sale byId(Long id) {
+        Sale sale=null;
         try (PreparedStatement preparedStatement=getConnection()
                 .prepareStatement(""" 
-                                    SELECT * FROM client WHERE id =?
+                                    SELECT * FROM sale WHERE id =?
                                     """)
         ) {
             preparedStatement.setLong(1,id);
             ResultSet resultSet= preparedStatement.executeQuery();
             if (resultSet.next()){
-                client = createClient(resultSet);
+                sale=createSale(resultSet);
             }
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return client;
+        return sale;
     }
 
     @Override
-    public void save(Client client) {
+    public void save(Sale sale) {
         try(PreparedStatement preparedStatement = getConnection()
                 .prepareStatement("""
-                                       INSERT INTO client(name,email,telephone,birthDate) values (?,?,?,?)
+                                       INSERT INTO sale(idSale,idToy,idEmployee) values (?,?,?)
                                        """)
         ){
-            preparedStatement.setString(1, client.getName());
-            preparedStatement.setString(2, client.getEmail());
-            preparedStatement.setInt(3,client.getTelephone());
-            preparedStatement.setDate(4,client.getBirthDate());
+            preparedStatement.setLong(1, sale.getIdSale());
+            preparedStatement.setLong(2, sale.getIdToy());
+            preparedStatement.setLong(3,sale.getIdEmployee());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -88,17 +79,16 @@ public class ClientRepositoryDBImpl implements Repository<Client> {
     }
 
     @Override
-    public void update(Client client) {
+    public void update(Sale sale) {
         try(PreparedStatement preparedStatement = getConnection()
                 .prepareStatement("""
-                                    UPDATE client SET name = ?, price = ?, amount = ? , birthDate=? WHERE id = ?;
+                                    UPDATE sale SET idToy = ?, idClient = ?, idEmployee = ? WHERE id = ?;
                                       """
                 )
         ){
-            preparedStatement.setString(1, client.getName());
-            preparedStatement.setString(2, client.getEmail());
-            preparedStatement.setInt(3,client.getTelephone());
-            preparedStatement.setDate(4,client.getBirthDate());
+            preparedStatement.setLong(1, sale.getIdToy());
+            preparedStatement.setLong(2, sale.getIdClient());
+            preparedStatement.setLong(3,sale.getIdEmployee());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -110,7 +100,7 @@ public class ClientRepositoryDBImpl implements Repository<Client> {
     public void delete(Long id) {
         try(PreparedStatement preparedStatement = getConnection()
                 .prepareStatement("""
-                                      DELETE FROM client where id=?
+                                      DELETE FROM sale where id=?
                                       """)
         ){
             preparedStatement.setLong(1,id);

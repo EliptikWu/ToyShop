@@ -23,7 +23,6 @@ public class ToyMapper {
                 toyMapper.category());
     }
 
-
     public static List<ToyDto> mapFrom(List<Toy> toyMapper){
         return toyMapper.stream().map(ToyMapper::mapFrom).collect(Collectors.toList());
 
