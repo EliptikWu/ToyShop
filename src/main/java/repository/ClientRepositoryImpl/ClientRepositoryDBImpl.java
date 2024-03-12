@@ -1,7 +1,7 @@
-package repository.ToyRepositoryImpl;
+package repository.ClientRepositoryImpl;
 
 import Config.DataBaseConnection;
-import jdk.jfr.Category;
+import model.Client;
 import model.Toy;
 import repository.Repository;
 
@@ -9,23 +9,30 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ToyRepositoryDBImpl implements Repository<Toy> {
+public class ClientRepositoryDBImpl implements Repository<Client> {
     private Connection getConnection() throws SQLException {
         return DataBaseConnection.getInstance();
     }
 
-    private Toy createToy(ResultSet resultSet) throws SQLException {
-        Toy toy = new Toy();
-        toy.setId(resultSet.getLong("id"));
-        toy.setName(resultSet.getString("name"));
-        toy.setPrice(resultSet.getDouble("price"));
-        toy.setCategory(resultSet.getString("category"));
-        return toy;
+    private Client createToy(ResultSet resultSet) throws SQLException {
+        Client client = new Client();
+        client.setIdClient(resultSet.getLong("idClient"));
+        client.setName(resultSet.getString("name"));
+        client.setEmail(resultSet.getString("price"));
+        client.setTelephone(resultSet.getInt("category"));
+        java.sql.Date dbSqlDate = resultSet.getDate("birthDate");
+        if (dbSqlDate != null) {
+            Date birthDate = dbSqlDate;
+            client.setBirthDate(birthDate.getTime()); //
+        } else {
+            client.setBirthDate(null);
+        }
+        return client;
     }
 
     @Override
-    public List<Toy> list() {
-        List<Toy>toysList=new ArrayList<>();
+    public List<Client> list() {
+        List<Client>toysList=new ArrayList<>();
         try(Statement statement=getConnection().createStatement();
             ResultSet resultSet=statement.executeQuery(
                     """
@@ -34,8 +41,8 @@ public class ToyRepositoryDBImpl implements Repository<Toy> {
             ))
         {
             while (resultSet.next()){
-                Toy toy=createToy(resultSet);
-                toysList.add(toy);
+                Client client=createToy(resultSet);
+                toysList.add(client);
             }
 
         } catch (SQLException e) {

@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface Repository <T>{
     List<T> list();
-    T byId(int id);
+    T byId(Long id);
     void save(T t);
-    void delete(int id);
+    void delete(Long id);
 
     void update(T t);
 }
